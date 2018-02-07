@@ -1,0 +1,27 @@
+ It's probably because launchctl is managing your mongod instance. If you want to start and shutdown mongod instance, unload that first:
+
+ launchctl unload -w ~/Library/LaunchAgents/org.mongodb.mongod.plist
+ Then start mongod manually:
+
+ mongod -f path/to/mongod.conf --fork
+ You can find your mongod.conf location from ~/Library/LaunchAgents/org.mongodb.mongod.plist.
+
+ After that, db.shutdownServer() would work just fine.
+
+ Added Feb 22 2014:
+
+ If you have mongodb installed via homebrew, homebrew actually has a handy brew services command. To show current running services:
+
+ brew services list
+
+ To start mongodb:
+
+ brew services start mongodb
+
+ To stop mongodb if it's already running:
+
+ brew services stop mongodb
+
+ Update
+
+ As edufinn pointed out in the comment, brew services is now available as user-defined command and can be installed with following command: brew tap gapple/services
