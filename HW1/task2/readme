@@ -1,0 +1,5 @@
+Specify port number with --port option when starting the redis server
+
+redis-server --port portNumber
+
+redis-cli -h 127.0.0.1 -p portNumber
