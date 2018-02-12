@@ -83,6 +83,7 @@ def startApplication(redisServer):
         # catch all other exception
         except Exception as e:
             print "Got an unexpected exception: \n%s" % str(e)
+            subscribing = False
 
 
 # main function
