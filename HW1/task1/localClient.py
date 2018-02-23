@@ -114,17 +114,17 @@ targetCollection = pymongo.MongoClient('localhost', 27017).hw.fitness_122006286
 # # update the document with uid 1001
 # updateEmployeeInfo(targetCollection, jsonObject)
 #
-# # print current number of employees in database
-# print "Number of employees in AggieFit database: %d" % numberOfEmployee(targetCollection)
+# print current number of employees in database
+print "Number of employees in AggieFit database: %d" % numberOfEmployee(targetCollection)
 
 # # find employees who have been tagged as "active"
 # activeEmployee(targetCollection)
 
 # # find employees that have a goal step count greater than 5000 steps
 # goalStep(targetCollection)
-
-# # aggregate the total activity duration for each employee
-# aggregateActDuration(targetCollection)
+#
+# aggregate the total activity duration for each employee
+aggregateActDuration(targetCollection)
 
 # resCollection = pymongo.MongoClient('localhost', 27017).hw.fitness_122006286
 #

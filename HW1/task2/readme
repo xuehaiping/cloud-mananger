@@ -2,4 +2,5 @@ Specify port number with --port option when starting the redis server
 
 redis-server --port portNumber
 
-redis-cli -h 127.0.0.1 -p portNumber
+start the client code with the same portNumber
+MessageBoardsClient.py -p portNumber
