@@ -12,7 +12,7 @@ class Parser:
         self.logger = logging.getLogger(LOGGER_NAME)
 
     def failurePromot(self):
-        print "Input format wrong"
+        print "Input format wrong or you have invalid file name or options"
         self.logger.info("FAILURE")
 
     def successPromot(self):
@@ -26,16 +26,13 @@ class Parser:
         success = False
         if len(command) == 2:
             if command[0] == "--hardware":
-                success = True
-                print command[1]
+                success = self.stack.hardwareManager.addHardware(command[1])
 
             elif command[0] == "--images":
-                success = True
-                print command[1]
+                success = self.stack.imageManager.addImages(command[1])
 
             elif command[0] == "--flavors":
-                success = True
-                print command[1]
+                success = self.stack.flavorManager.addFlavor(command[1])
 
             if success:
                 self.successPromot()
@@ -49,12 +46,16 @@ class Parser:
         success = False
         if len(command) == 1:
             if command[0] == "hardware":
-                print command[0]
-                success = True
+                success = self.stack.hardwareManager.show()
 
             elif command[0] == "images":
-                print command[0]
-                success = True
+                success = self.stack.imageManager.show()
+
+            elif command[0] == "flavors":
+                success = self.stack.flavorManager.show()
+
+            elif command[0] == "all":
+                success = self.stack.showAll()
 
         if success:
             self.successPromot()
@@ -68,7 +69,7 @@ class Parser:
         while True:
             cmd = raw_input('Enter your command: ')
             self.logger.info("command: " + cmd)
-            args = str.strip(cmd).split(" ")
+            args = filter(None, str.strip(cmd).split(" "))
             # command length less than 2 is never correct
             if len(args) <= 1:
                 self.failurePromot()

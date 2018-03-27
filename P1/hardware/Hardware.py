@@ -26,3 +26,7 @@ class Hardware:
         self.memSize = memSize
         self.numDisk = numDisk
         self.numVcpu = numVcpu
+
+    def show(self):
+        print " name: %s\n ip: %s\n mem: %d\n num-disks: %d\n num-vcpus: %d\n" \
+              % (self.name, self.ip, self.memSize, self.numDisk, self.numVcpu)

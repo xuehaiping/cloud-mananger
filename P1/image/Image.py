@@ -17,3 +17,10 @@ class Image:
         """
         self.name = name
         self.path = path
+
+    def show(self):
+        """
+        Display information about the image
+        """
+        print " image name: %s\n path; %s" \
+              %(self.name, self.path)

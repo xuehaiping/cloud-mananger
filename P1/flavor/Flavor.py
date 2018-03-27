@@ -24,3 +24,7 @@ class Flavor:
         self.memSize = memSize
         self.numDisk = numDisk
         self.numVcpu = numVcpu
+
+    def show(self):
+        print " Instance Type: %s\n RAM size: %dGB\n num-disks: %d\n num-vcpus: %d\n" \
+              % (self.instanceType, self.memSize, self.numDisk, self.numVcpu)

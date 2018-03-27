@@ -1,0 +1,13 @@
+config --hardware p0/hdwr-config.txt
+
+show hardware
+
+config --flavors p0/flavor-config.txt
+
+show flavors
+
+config --images p0/image-config.txt
+
+show images
+
+show all

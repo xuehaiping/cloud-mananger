@@ -15,7 +15,7 @@ class AggieStack:
         static method to create a stack
         """
         if AggieStack.__instance is None:
-            AggieStack()
+            AggieStack.__instance = AggieStack()
         return AggieStack.__instance
 
     def __init__(self):
@@ -25,6 +25,15 @@ class AggieStack:
         if AggieStack.__instance is not None:
             raise Exception("Only one Logger in this program!")
         else:
-            self.favorManger = FlavorManager()
-            self.hardwareManger = HardwareManager()
+            self.flavorManager = FlavorManager()
+            self.hardwareManager = HardwareManager()
             self.imageManager = ImageManager()
+
+    def showAll(self):
+        """
+        show images, hardware and flavors
+        """
+        self.hardwareManager.show()
+        self.imageManager.show()
+        self.flavorManager.show()
+        return True

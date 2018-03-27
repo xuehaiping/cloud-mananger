@@ -1,3 +1,9 @@
+from Config import LOGGER_NAME
+from hardware.Hardware import Hardware
+
+import logging
+
+
 class HardwareManager:
     """
     HardwareManager class will contains all hardware information and status for AggieStack
@@ -11,8 +17,9 @@ class HardwareManager:
         """
         constructor of HardwareManager class
         """
-        self.hardwareList = []
+        self.hardwareDict = {}
         self.numHardware = 0
+        self.logger = logging.getLogger(LOGGER_NAME)
 
     def addHardware(self, fname):
         """
@@ -21,9 +28,32 @@ class HardwareManager:
         Args:
             fname (str): name of the file to read the configuration
         """
+        try:
+            with open(fname, 'r') as f:
+                lines = f.readlines()
+                self.numHardware += int(lines[0])
+                hardwares = lines[1:]
+                for hardware in hardwares:
+                    tokens = hardware.split(" ")
+                    self.hardwareDict[tokens[1]] = Hardware(name=tokens[0],
+                                                            ip=tokens[1],
+                                                            memSize=int(tokens[2]),
+                                                            numDisk=int(tokens[3]),
+                                                            numVcpu=int(tokens[4]))
+            f.close()
+
+        except Exception:
+            self.logger.debug(str(Exception))
+            return False
+
+        return True
 
     def show(self):
         """
         Display information about the hardware hosting the cloud
         """
-        pass
+        print "======================================== Hardware List ========================================"
+        for key in self.hardwareDict:
+            print "Hardware ip address: %s" % key
+            self.hardwareDict[key].show()
+        return True
