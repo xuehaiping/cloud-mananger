@@ -1,6 +1,6 @@
 from AggieStack import AggieStack
 import StackLogger
-
+from parser.CommandParser import Parser
 
 def runStack():
     """
@@ -13,6 +13,9 @@ def runStack():
 if __name__ == "__main__":
     # global logger
     logger = StackLogger.createLogger()
+    logger.info("start running aggie stack")
     # start aggie stack
     myStack = runStack()
-    logger.info("Start run aggie stack")
+    # start parser
+    myParser = Parser(myStack)
+    myParser.parse()
