@@ -41,8 +41,8 @@ class FlavorManager:
                                                         numVcpu=int(tokens[3]))
             f.close()
 
-        except Exception:
-            self.logger.debug(str(Exception))
+        except Exception as e:
+            self.logger.exception(e)
             return False
 
         return True

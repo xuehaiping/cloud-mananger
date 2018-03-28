@@ -62,6 +62,29 @@ class Parser:
         else:
             self.failurePromot()
 
+    def parseAdmin(self, command):
+        """
+        Parseadmin commands
+        """
+        success = False
+        if len(command) > 1:
+            # for show command
+            if command[0] == "show":
+                if command[1] == "hardware":
+                    success = self.stack.hardwareManager.showRemainCapacity()
+
+                elif command[1] == "instances":
+                    success = True
+
+            elif command[0] == "can_host":
+                if len(command) == 3:
+                    success = self.stack.canHost(command[1], command[2])
+
+        if success:
+            self.successPromot()
+        else:
+            self.failurePromot()
+
     def parse(self):
         """
         Parser for commands
@@ -80,6 +103,9 @@ class Parser:
 
             elif args[0] == "show":
                 self.parseShow(args[1:])
+
+            elif args[0] == "admin":
+                self.parseAdmin(args[1:])
 
             elif args[0] == "quit":
                 break

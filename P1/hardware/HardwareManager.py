@@ -35,15 +35,15 @@ class HardwareManager:
                 hardwares = lines[1:]
                 for hardware in hardwares:
                     tokens = hardware.split(" ")
-                    self.hardwareDict[tokens[1]] = Hardware(name=tokens[0],
+                    self.hardwareDict[tokens[0]] = Hardware(name=tokens[0],
                                                             ip=tokens[1],
                                                             memSize=int(tokens[2]),
                                                             numDisk=int(tokens[3]),
                                                             numVcpu=int(tokens[4]))
             f.close()
 
-        except Exception:
-            self.logger.debug(str(Exception))
+        except Exception as e:
+            self.logger.exception(e)
             return False
 
         return True
@@ -54,6 +54,16 @@ class HardwareManager:
         """
         print "======================================== Hardware List ========================================"
         for key in self.hardwareDict:
-            print "Hardware ip address: %s" % key
+            print "Hardware name: %s" % key
             self.hardwareDict[key].show()
+        return True
+
+    def showRemainCapacity(self):
+        """
+        show remainCapacity for all hardware
+        """
+        print "============================== Remaining Hardware Capacity List =============================="
+        for key in self.hardwareDict:
+            print "Hardware name: %s" % key
+            self.hardwareDict[key].showRemainCapacity()
         return True
