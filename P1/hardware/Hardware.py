@@ -20,6 +20,7 @@ class Hardware:
             memSize (int): amount of RAM in GB
             numDisk (int): number of virtual disks the machine can accommodate locally
             numVcpu (int): number of virtual CPUs cores that the hardware can accommodate
+            instanceList (list): list of instance the current hardware is hosting
         """
         # hardware information
         self.name = name
@@ -32,6 +33,7 @@ class Hardware:
         self.remainMem = memSize
         self.remainDisk = numDisk
         self.remainVcpu = numVcpu
+        self.instanceList = []
 
     def show(self):
         """
@@ -58,7 +60,11 @@ class Hardware:
 
         return False
 
-
-
-
-
+    def host(self, instance):
+        """
+        host a instance
+        """
+        self.remainMem -= instance.flavor.memSize
+        self.remainDisk -= instance.flavor.numDisk
+        self.remainVcpu -= instance.flavor.numVcpu
+        self.instanceList.append(instance)

@@ -2,8 +2,10 @@ from Config import LOGGER_NAME
 from flavor.FlavorManager import FlavorManager
 from hardware.HardwareManager import HardwareManager
 from image.ImageManager import ImageManager
+from instance.InstanceManager import InstanceManager
 
 import logging
+
 
 class AggieStack:
     """
@@ -30,6 +32,7 @@ class AggieStack:
             self.flavorManager = FlavorManager()
             self.hardwareManager = HardwareManager()
             self.imageManager = ImageManager()
+            self.InstanceManager = InstanceManager()
             self.logger = logging.getLogger(LOGGER_NAME)
 
     def logFailure(self, exception):
@@ -47,7 +50,7 @@ class AggieStack:
 
     def canHost(self, machineName, flavor):
         """
-        check if the stack can host a new instance with spec
+        check if the stack can host a new instance on a server with flavor
         """
         try:
             if self.hardwareManager \
@@ -56,10 +59,23 @@ class AggieStack:
                 print "Aggie Stack can host flavor: %s on Server: %s" % (machineName, flavor)
 
             else:
-                self.logFailure("server % do not have enough capacity to host the flavor %s" % (machineName, flavor))
+               print "server % do not have enough capacity to host the flavor %s" % (machineName, flavor)
 
         except Exception as e:
             self.logFailure(e)
             return False
 
         return True
+
+    def createInstance(self, name, image, flavor, server):
+        """
+        create a instance if a existing server can host it
+        """
+        hardware = self.hardwareManager.hardwareDict
+        for machine in hardware:
+            if self.canHost(machine, flavor):
+                return self.InstanceManager.createInstance(name=name,
+                                                           image=self.imageManager.imageDict[image],
+                                                           flavor=self.flavorManager.flavorDict[flavor],
+                                                           server=server)
+        return False

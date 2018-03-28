@@ -64,7 +64,7 @@ class Parser:
 
     def parseAdmin(self, command):
         """
-        Parseadmin commands
+        parse admin commands
         """
         success = False
         if len(command) > 1:
@@ -79,6 +79,30 @@ class Parser:
             elif command[0] == "can_host":
                 if len(command) == 3:
                     success = self.stack.canHost(command[1], command[2])
+
+        if success:
+            self.successPromot()
+        else:
+            self.failurePromot()
+
+    def parseServer(self, command):
+        """
+        parse server commands
+        """
+        success = False
+        if len(command) > 0:
+            # for show command
+            if command[0] == "list":
+                if len(command) == 1:
+                    success = True
+
+            elif command[0] == "create":
+                if len(command) == 6:
+                    success = True
+
+            elif command[0] == "delete":
+                if len(command) == 2:
+                    success = True
 
         if success:
             self.successPromot()
@@ -105,6 +129,9 @@ class Parser:
                 self.parseShow(args[1:])
 
             elif args[0] == "admin":
+                self.parseAdmin(args[1:])
+
+            elif args[0] == "server":
                 self.parseAdmin(args[1:])
 
             elif args[0] == "quit":
