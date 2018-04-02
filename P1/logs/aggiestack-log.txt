@@ -1,0 +1,110 @@
+2018-03-31 18:17:37,965 INFO start running aggie stack
+2018-03-31 18:17:51,422 INFO start running aggie stack
+2018-03-31 18:17:59,151 INFO command: admin can_host m1 small
+2018-03-31 18:17:59,152 INFO SUCCESS
+2018-03-31 18:18:10,016 INFO command: admin can_host m1 xlarge
+2018-03-31 18:18:10,016 INFO SUCCESS
+2018-03-31 18:21:59,648 INFO start running aggie stack
+2018-03-31 18:22:04,718 INFO start running aggie stack
+2018-03-31 18:22:49,228 INFO start running aggie stack
+2018-03-31 18:30:18,451 INFO start running aggie stack
+2018-03-31 18:31:46,666 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-03-31 18:31:46,667 INFO FAILURE
+2018-03-31 18:33:01,676 INFO start running aggie stack
+2018-03-31 18:33:08,651 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-03-31 18:33:08,651 INFO SUCCESS
+2018-03-31 18:33:43,155 INFO command: show images
+2018-04-01 22:09:22,031 INFO start running aggie stack
+2018-04-01 22:09:42,525 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:09:42,525 INFO SUCCESS
+2018-04-01 22:09:58,605 INFO command: aggiestack server delete xxxl
+2018-04-01 22:09:58,605 INFO FAILURE
+2018-04-01 22:10:14,709 INFO command: server delete INSTANCE_NAME
+2018-04-01 22:10:14,709 INFO FAILURE
+2018-04-01 22:14:05,007 INFO start running aggie stack
+2018-04-01 22:14:12,405 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:14:12,405 INFO SUCCESS
+2018-04-01 22:14:23,988 INFO command: server delete xxxl
+2018-04-01 22:14:23,989 INFO FAILURE
+2018-04-01 22:16:34,864 INFO start running aggie stack
+2018-04-01 22:16:42,693 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:16:42,693 INFO SUCCESS
+2018-04-01 22:16:52,270 INFO command: server delete xxxl
+2018-04-01 22:16:52,271 INFO SUCCESS
+2018-04-01 22:16:59,043 INFO start running aggie stack
+2018-04-01 22:18:01,060 INFO start running aggie stack
+2018-04-01 22:18:07,023 INFO start running aggie stack
+2018-04-01 22:18:20,270 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:18:20,271 INFO SUCCESS
+2018-04-01 22:18:44,214 INFO command: server delete xxxl
+2018-04-01 22:18:44,214 INFO SUCCESS
+2018-04-01 22:19:20,588 INFO start running aggie stack
+2018-04-01 22:19:29,871 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:19:29,871 INFO SUCCESS
+2018-04-01 22:25:54,781 INFO start running aggie stack
+2018-04-01 22:29:45,502 INFO start running aggie stack
+2018-04-01 22:30:15,021 INFO start running aggie stack
+2018-04-01 22:30:28,653 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:30:28,654 INFO SUCCESS
+2018-04-01 22:34:35,078 INFO start running aggie stack
+2018-04-01 22:34:47,269 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:34:47,270 INFO SUCCESS
+2018-04-01 22:35:05,942 INFO command: server delete xxxl
+2018-04-01 22:35:05,943 INFO SUCCESS
+2018-04-01 22:35:41,971 INFO start running aggie stack
+2018-04-01 22:35:50,742 INFO command:  admin show hardware
+2018-04-01 22:35:50,742 INFO SUCCESS
+2018-04-01 22:36:06,359 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:36:06,359 INFO SUCCESS
+2018-04-01 22:36:15,902 INFO command:  admin show hardware
+2018-04-01 22:36:15,902 INFO SUCCESS
+2018-04-01 22:36:49,303 INFO start running aggie stack
+2018-04-01 22:36:55,215 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:36:55,215 INFO SUCCESS
+2018-04-01 22:37:03,638 INFO command: aggiestack server list 
+2018-04-01 22:37:03,639 INFO FAILURE
+2018-04-01 22:37:11,032 INFO command: server list 
+2018-04-01 22:37:11,032 INFO SUCCESS
+2018-04-01 22:38:04,313 INFO start running aggie stack
+2018-04-01 22:38:09,942 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:38:09,942 INFO SUCCESS
+2018-04-01 22:38:17,623 INFO command:  server list 
+2018-04-01 22:39:01,132 INFO start running aggie stack
+2018-04-01 22:39:06,086 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:39:06,086 INFO SUCCESS
+2018-04-01 22:39:14,440 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:39:14,440 INFO FAILURE
+2018-04-01 22:39:21,887 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxx
+2018-04-01 22:39:21,887 INFO SUCCESS
+2018-04-01 22:39:44,462 INFO command: server list 
+2018-04-01 22:39:44,462 INFO SUCCESS
+2018-04-01 22:39:55,007 INFO command: admin show hardware
+2018-04-01 22:39:55,007 INFO SUCCESS
+2018-04-01 22:40:01,167 INFO command: admin show instances 
+2018-04-01 22:40:01,167 INFO SUCCESS
+2018-04-01 22:40:32,595 INFO start running aggie stack
+2018-04-01 22:40:41,270 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:40:41,270 INFO SUCCESS
+2018-04-01 22:40:52,823 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxx
+2018-04-01 22:40:52,824 INFO SUCCESS
+2018-04-01 22:45:28,092 INFO start running aggie stack
+2018-04-01 22:46:51,413 INFO start running aggie stack
+2018-04-01 22:47:00,895 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:47:00,896 INFO SUCCESS
+2018-04-01 22:47:08,280 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxx
+2018-04-01 22:47:08,280 INFO SUCCESS
+2018-04-01 22:47:20,359 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xx
+2018-04-01 22:47:20,360 INFO SUCCESS
+2018-04-01 22:51:18,960 INFO start running aggie stack
+2018-04-01 22:51:25,775 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxl
+2018-04-01 22:51:25,786 INFO SUCCESS
+2018-04-01 22:51:28,761 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxx
+2018-04-01 22:51:28,761 INFO SUCCESS
+2018-04-01 22:51:34,624 INFO command: server create --image linux-ubuntu-16 --flavor xlarge xxxgsd
+2018-04-01 22:51:34,624 INFO SUCCESS
+2018-04-01 22:51:41,887 INFO command: admin show instances 
+2018-04-01 22:51:41,888 INFO SUCCESS
+2018-04-01 22:51:51,928 INFO command: admin show hardware
+2018-04-01 22:51:51,929 INFO SUCCESS
+2018-04-01 22:52:28,872 INFO command:  admin show instances
+2018-04-01 22:52:28,873 INFO SUCCESS

@@ -68,3 +68,18 @@ class Hardware:
         self.remainDisk -= instance.flavor.numDisk
         self.remainVcpu -= instance.flavor.numVcpu
         self.instanceList.append(instance)
+        return True
+
+    def remove(self, instName):
+        """
+        remove a instance
+        """
+        for instance in self.instanceList:
+            if instance.name == instName:
+                self.remainMem += instance.flavor.memSize
+                self.remainDisk += instance.flavor.numDisk
+                self.remainVcpu += instance.flavor.numVcpu
+                self.instanceList.remove(instance)
+                return True
+        print "No instance %s found in hardware %s" % (instName, self.name)
+        return False

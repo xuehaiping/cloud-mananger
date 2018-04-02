@@ -23,3 +23,10 @@ class Instance:
         show host server of the instance
         """
         print "Host server of instance %s: %s" % (self.name, self.hostServer)
+
+    def show(self):
+        """
+        show instance spec
+        """
+        print " name: %s\n image: %s\n flavor: %s\n" \
+              % (self.name, self.image.name, self.flavor.instanceType)

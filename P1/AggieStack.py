@@ -59,23 +59,45 @@ class AggieStack:
                 print "Aggie Stack can host flavor: %s on Server: %s" % (machineName, flavor)
 
             else:
-               print "server % do not have enough capacity to host the flavor %s" % (machineName, flavor)
+               print "server %s do not have enough capacity to host the flavor %s" % (machineName, flavor)
 
         except Exception as e:
+            print "Exception raised, please check the log"
             self.logFailure(e)
             return False
 
         return True
 
-    def createInstance(self, name, image, flavor, server):
+    def createInstance(self, name, image, flavor):
         """
         create a instance if a existing server can host it
         """
+        if image not in self.imageManager.imageDict or flavor not in self.flavorManager.flavorDict:
+            print "image or flavor not being added."
+            return False
+
         hardware = self.hardwareManager.hardwareDict
         for machine in hardware:
-            if self.canHost(machine, flavor):
-                return self.InstanceManager.createInstance(name=name,
-                                                           image=self.imageManager.imageDict[image],
-                                                           flavor=self.flavorManager.flavorDict[flavor],
-                                                           server=server)
+            if self.hardwareManager.hardwareDict[machine].canHost(self.flavorManager.flavorDict[flavor]):
+                print "Machine %s can host %s with flavor %s" % (machine, name, flavor)
+                newInstance = self.InstanceManager.createInstance(name=name,
+                                                                  image=self.imageManager.imageDict[image],
+                                                                  flavor=self.flavorManager.flavorDict[flavor],
+                                                                  server=machine)
+                if newInstance is not None:
+                    hardware[machine].host(newInstance)
+                    return True
+                else:
+                    return False
         return False
+
+    def deleteInstance(self, name):
+        """
+        remove a instance
+        """
+        if name in self.InstanceManager.instanceDict \
+            and self.hardwareManager.removeInstance(name, self.InstanceManager.instanceDict[name].hostServer) \
+            and self.InstanceManager.remove(name):
+            return True
+        return False
+

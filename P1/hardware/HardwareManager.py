@@ -18,6 +18,7 @@ class HardwareManager:
         constructor of HardwareManager class
         """
         self.hardwareDict = {}
+        self.rackDict = {}
         self.numHardware = 0
         self.logger = logging.getLogger(LOGGER_NAME)
 
@@ -67,3 +68,13 @@ class HardwareManager:
             print "Hardware name: %s" % key
             self.hardwareDict[key].showRemainCapacity()
         return True
+
+    def removeInstance(self, instName, serverName):
+        """
+        remove instance from a specific hardware
+        """
+        if serverName in self.hardwareDict:
+            return self.hardwareDict[serverName].remove(instName)
+        else:
+            print "No hardware %s in hardware manager" % serverName
+            return False

@@ -13,3 +13,7 @@ show images
 show all
 
 admin can_host m1 small
+
+server create --image linux-ubuntu-16 --flavor xlarge xxxl
+
+server delete xxxl

@@ -29,10 +29,10 @@ class InstanceManager:
         if name not in self.instanceDict:
             self.instanceDict[name] = Instance(name=name, image=image, flavor=flavor, hostServer=server)
             self.numInstances += 1
-            return True
+            return self.instanceDict[name]
         else:
             print "Instance name already exist, please use another name."
-            return False
+            return None
 
     def show(self):
         """
@@ -42,4 +42,23 @@ class InstanceManager:
             self.instanceDict[instance].showHostServer()
         return True
 
+    def remove(self, instName):
+        """
+        remove a instance by name
+        """
+        if instName not in self.instanceDict:
+            print "No instance %s in instance Manager" % instName
+            return False
+        else:
+            del self.instanceDict[instName]
+            return True
 
+    def showAllInstance(self):
+        """
+        show all instances in the manager
+        """
+        print "======================================== instance List ========================================"
+        for instance in self.instanceDict:
+            print "Instance %s" % instance
+            self.instanceDict[instance].show()
+        return True

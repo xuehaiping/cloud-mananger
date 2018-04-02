@@ -74,7 +74,7 @@ class Parser:
                     success = self.stack.hardwareManager.showRemainCapacity()
 
                 elif command[1] == "instances":
-                    success = True
+                    success = self.stack.InstanceManager.show()
 
             elif command[0] == "can_host":
                 if len(command) == 3:
@@ -94,15 +94,15 @@ class Parser:
             # for show command
             if command[0] == "list":
                 if len(command) == 1:
-                    success = True
+                    success = self.stack.InstanceManager.showAllInstance()
 
             elif command[0] == "create":
                 if len(command) == 6:
-                    success = True
+                    success = self.stack.createInstance(command[5], command[2], command[4])
 
             elif command[0] == "delete":
                 if len(command) == 2:
-                    success = True
+                    success = self.stack.deleteInstance(command[1])
 
         if success:
             self.successPromot()
@@ -132,7 +132,7 @@ class Parser:
                 self.parseAdmin(args[1:])
 
             elif args[0] == "server":
-                self.parseAdmin(args[1:])
+                self.parseServer(args[1:])
 
             elif args[0] == "quit":
                 break
