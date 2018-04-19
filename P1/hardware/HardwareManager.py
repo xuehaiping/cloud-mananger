@@ -131,3 +131,67 @@ class HardwareManager:
         else:
             print "No hardware %s in hardware manager" % serverName
             return False
+
+    def priorHost(self, image, flavor):
+        """
+        prioritize server where the required image is already cached,
+        or one rack with more free space,
+        or choose one rack to remove an image
+
+        Args:
+            image (image)
+            flavor (flavor)
+        """
+        rackList = sorted(self.rackDict.values(), key=lambda x: x.remainCap, reverse=True)
+
+
+        for rack in rackList:
+            imgCached = False
+            for localImage in rack.imageDict.keys():
+                if localImage == image.name:
+                    imgCached = True
+                    break
+            if imgCached:
+                for hardware in self.hardwareDict.keys():
+                    if self.hardwareDict[hardware].canHost(flavor) and \
+                            self.hardwareDict[hardware].rackName == rack.name:
+                        return hardware
+            # if rack.remainCap > maxSpace and\
+            #         rack.canHost(image):
+            #     maxSpace = self.rackDict[rack].remainCap
+            #     rackWithSpace = rack
+        for rack in rackList:
+            for hardware in self.hardwareDict.keys():
+                if self.hardwareDict[hardware].canHost(flavor) and \
+                        rack.canHost(image):
+                    rack.host(image)
+                    return hardware
+
+        for hardware in self.hardwareDict.keys():
+            if self.hardwareDict[hardware].canHost(flavor):
+                rack = self.hardwareDict[hardware].rackName
+                for img in self.rackDict[rack].imageDict.keys():
+                    self.rackDict[rack].remove(img)
+                    if self.rackDict[rack].canHost(image):
+                        self.rackDict[rack].host(image)
+                        break
+                return hardware
+        print "No hardware is qualified"
+        return False
+
+    def showImageList(self, name):
+        """
+        lists the names of the images present in the specified rack
+        and the amount available in the rack storage to host more image files
+
+        Args:
+            name (str): name of that rack
+        """
+        print "======================================== Image List of the Rack ========================================"
+        print "Rack name: %s" % name
+        list = self.rackDict[name].imageDict
+        for key in list:
+            print "Image name: %s" % key
+        print "Rack remain capacity: %d" % self.rackDict[name].remainCap
+        return True
+

@@ -32,7 +32,7 @@ class AggieStack:
             self.flavorManager = FlavorManager()
             self.hardwareManager = HardwareManager()
             self.imageManager = ImageManager()
-            self.InstanceManager = InstanceManager()
+            self.instanceManager = InstanceManager()
             self.logger = logging.getLogger(LOGGER_NAME)
 
     def logFailure(self, exception):
@@ -131,50 +131,18 @@ class AggieStack:
             return True
         return False
 
-    def priorHost(self, image, flavor):
+    def evacuate(self, name):
         """
-        prioritize server where the required image is already cached,
-        or one rack with more free space,
-        or choose one rack to remove an image
-
-        Args:
-            image (image)
-            flavor (flavor)
+        migrate all virtual machines(instance) from servers on that rack to other available server,
+        then clean that rack
         """
-        rackList = sorted(self.rackDict.values(), key=lambda x: x.remainCap, reverse=True)
-
-
-        for rack in rackList:
-            imgCached = False
-            for localImage in rack.imageDict.keys():
-                if localImage == image.name:
-                    imgCached = True
-                    break
-            if imgCached:
-                for hardware in self.hardwareDict.keys():
-                    if self.hardwareDict[hardware].canHost(flavor) and \
-                            self.hardwareDict[hardware].rackName == rack.name:
-                        return hardware
-            # if rack.remainCap > maxSpace and\
-            #         rack.canHost(image):
-            #     maxSpace = self.rackDict[rack].remainCap
-            #     rackWithSpace = rack
-        for rack in rackList:
-            for hardware in self.hardwareDict.keys():
-                if self.hardwareDict[hardware].canHost(flavor) and \
-                        rack.canHost(image):
-                    rack.host(image)
-                    return hardware
-
-        for hardware in self.hardwareDict.keys():
-            if self.hardwareDict[hardware].canHost(flavor):
-                rack = self.hardwareDict[hardware].rackName
-                for img in self.rackDict[rack].imageDict.keys():
-                    self.rackDict[rack].remove(img)
-                    if self.rackDict[rack].canHost(image):
-                        self.rackDict[rack].host(image)
-                        break
-                return hardware
-        print "No hardware is qualified"
+        hardwares = self.hardwareManager.hardwareDict
+        racks = self.hardwareManager.rackDict
+        if name in racks:
+            for hardware in hardwares.keys():
+                if hardwares[hardware].rackName == name:
+                    self.removeHardware(hardware, name)
+            return True
         return False
+
 

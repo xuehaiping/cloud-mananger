@@ -74,11 +74,15 @@ class Parser:
                     success = self.stack.hardwareManager.showRemainCapacity()
                 elif command[1] == "instances":
                     success = self.stack.instanceManager.show()
+                elif command[1] == "imagecaches":
+                    success = self.stack.hardwareManager.showImageList(command[2])
             elif command[0] == "can_host":
                 if len(command) == 3:
                     success = self.stack.canHost(command[1], command[2])
             elif command[0] == "remove":
                 success = self.stack.removeHardware(command[1], "")
+            elif command[0] == "evacuate":
+                success = self.stack.evacuate(command[1])
             elif command[0] == "add":
                 success = self.stack.hardwareManager.addHardwareAdmin(command[1:])
 

@@ -2,3 +2,5 @@
 linux-ubuntu 128 /images/linux-ubuntu-v1.0.img
 linux-sles 512 /images/old-image.img
 linux-ubuntu-16 2048 /images/linux-ubuntu-16.img
+linux-ubuntu-64 20480 /images/linux-ubuntu-64.img
+linux-ubuntu-96 40960 /images/linux-ubuntu-96.img
