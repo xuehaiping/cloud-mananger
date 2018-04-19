@@ -4,18 +4,20 @@ class Hardware:
 
     Attributes:
         name (str): name of the server
+        rackName (str): name of the rack
         ip (str): IP address of the server
         memSize (int): amount of RAM in GB
         numDisk (int): number of virtual disks the machine can accommodate locally
         numVcpu (int): number of virtual CPUs cores that the hardware can accommodate
     """
 
-    def __init__(self, name, ip, memSize, numDisk, numVcpu):
+    def __init__(self, name, rackName, ip, memSize, numDisk, numVcpu):
         """
         constructor of Hardware class
 
         Args:
             name (str): name of the server
+            rackName (str): name of the rack
             ip (str): IP address of the server
             memSize (int): amount of RAM in GB
             numDisk (int): number of virtual disks the machine can accommodate locally
@@ -24,6 +26,7 @@ class Hardware:
         """
         # hardware information
         self.name = name
+        self.rackName = rackName
         self.ip = ip
         self.memSize = memSize
         self.numDisk = numDisk
@@ -39,8 +42,8 @@ class Hardware:
         """
         show hardware specs
         """
-        print " name: %s\n ip: %s\n mem: %d\n num-disks: %d\n num-vcpus: %d\n" \
-              % (self.name, self.ip, self.memSize, self.numDisk, self.numVcpu)
+        print " name: %s\n rackName: %s\n ip: %s\n mem: %d\n num-disks: %d\n num-vcpus: %d\n" \
+              % (self.name, self.rackName, self.ip, self.memSize, self.numDisk, self.numVcpu)
 
     def showRemainCapacity(self):
         """
@@ -83,3 +86,9 @@ class Hardware:
                 return True
         print "No instance %s found in hardware %s" % (instName, self.name)
         return False
+
+    def getInstanceList(self):
+        """
+        remove a instance
+        """
+        return self.instanceList

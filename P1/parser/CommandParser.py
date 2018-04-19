@@ -72,13 +72,15 @@ class Parser:
             if command[0] == "show":
                 if command[1] == "hardware":
                     success = self.stack.hardwareManager.showRemainCapacity()
-
                 elif command[1] == "instances":
-                    success = self.stack.InstanceManager.show()
-
+                    success = self.stack.instanceManager.show()
             elif command[0] == "can_host":
                 if len(command) == 3:
                     success = self.stack.canHost(command[1], command[2])
+            elif command[0] == "remove":
+                success = self.stack.removeHardware(command[1], "")
+            elif command[0] == "add":
+                success = self.stack.hardwareManager.addHardwareAdmin(command[1:])
 
         if success:
             self.successPromot()
@@ -94,7 +96,7 @@ class Parser:
             # for show command
             if command[0] == "list":
                 if len(command) == 1:
-                    success = self.stack.InstanceManager.showAllInstance()
+                    success = self.stack.instanceManager.showAllInstance()
 
             elif command[0] == "create":
                 if len(command) == 6:

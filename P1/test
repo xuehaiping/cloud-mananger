@@ -17,3 +17,47 @@ admin can_host m1 small
 server create --image linux-ubuntu-16 --flavor xlarge xxxl
 
 server delete xxxl
+
+
+config --hardware p1/hdwr-config.txt
+
+show hardware
+
+config --flavors p1/flavor-config.txt
+
+show flavors
+
+config --images p1/image-config.txt
+
+show images
+
+show all
+
+server create --image linux-sles --flavor small sm1
+server create --image linux-sles --flavor large lg2
+server create --image linux-sles --flavor small sm1
+server create --image linux-sles --flavor small sm1
+server create --image linux-sles --flavor small sm1
+
+server create --image linux-sles --flavor large lg1
+
+server create --image linux-sles --flavor xlarge xlg1
+
+admin remove k2
+
+
+server list
+
+admin remove k2
+
+admin show hardware
+
+admin show instances
+
+admin add --mem 32 --disk 32 --vcpus 8  --ip 128.1.1.0 rack r2 k1
+
+
+
+admin evacuate r2
+
+admin show imagecaches r2

@@ -34,7 +34,7 @@ class ImageManager:
                 images = lines[1:]
                 for image in images:
                     tokens = image.split(" ")
-                    self.imageDict[tokens[0]] = Image(name=tokens[0], path=tokens[1])
+                    self.imageDict[tokens[0]] = Image(name=tokens[0], capacity=int(tokens[1]), path=tokens[2])
             f.close()
 
         except Exception as e:

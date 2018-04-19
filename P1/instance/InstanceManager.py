@@ -45,6 +45,9 @@ class InstanceManager:
     def remove(self, instName):
         """
         remove a instance by name
+
+        instName (str)
+
         """
         if instName not in self.instanceDict:
             print "No instance %s in instance Manager" % instName
