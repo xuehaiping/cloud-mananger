@@ -16,13 +16,13 @@ if __name__ == "__main__":
     logger.info("start running aggie stack")
     # start aggie stack
     myStack = runStack()
-    myStack.hardwareManager.addHardware("p1/hdwr-config.txt")
-    myStack.imageManager.addImages("p1/image-config.txt")
-    myStack.flavorManager.addFlavor("p1/flavor-config.txt")
-
-    myStack.createInstance("sm1", "linux-ubuntu-16", "small")
-    myStack.createInstance("lg1", "linux-ubuntu-96", "large")
-    myStack.createInstance("xlg1", "linux-ubuntu-64", "xlarge")
+    # myStack.hardwareManager.addHardware("p1/hdwr-config.txt")
+    # myStack.imageManager.addImages("p1/image-config.txt")
+    # myStack.flavorManager.addFlavor("p1/flavor-config.txt")
+    #
+    # myStack.createInstance("sm1", "linux-ubuntu-16", "small")
+    # myStack.createInstance("lg1", "linux-ubuntu-96", "large")
+    # myStack.createInstance("xlg1", "linux-ubuntu-64", "xlarge")
 
     # start parser
     myParser = Parser(myStack)
